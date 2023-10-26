@@ -30,7 +30,7 @@ public class InsertionSortDemo {
     public static void main(String[] args) {
         
         // Sample array to be sorted
-        int[] arr = {12, 11, 13, 5, 6};
+        int[] arr = {99, 73, 45, 22, 17, 3, 7, 12, 33};
 
         // Print the original array
         System.out.println("Original Array:");

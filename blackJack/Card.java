@@ -79,6 +79,10 @@ class Deck {
     public boolean isEmpty() {
         return cards.isEmpty();
     }
+
+    public int getSize() {
+        return cards.size();
+    }
 }
 
 // Represents a specialized card used in the game of Blackjack
@@ -123,7 +127,7 @@ class BlackjackDeck extends Deck {
 
     @Override
     public BlackjackCard dealCard() {
-        // This assumes all the cards in the 'cards' list are instances of BlackjackCard.
+        // This assumes all the cards in the "cards" list are instances of BlackjackCard.
         Card card = super.dealCard();
         if (card instanceof BlackjackCard) {
             return (BlackjackCard) card;

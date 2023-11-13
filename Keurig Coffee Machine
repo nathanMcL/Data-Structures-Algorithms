@@ -1,0 +1,54 @@
+Keurig Coffee Machine
+
+Initialize the Keurig Coffee Machine
+- Set water level to 7 cups
+- Set initial pod count to 25 (maximum capacity is 30 pods)
+
+1. Turn on the power of the Keurig coffee machine
+   a. Simulate a one-second wait.
+
+2. Check if the machine has enough water (7 cups)
+   a. If the water level is below 7 cups, refill to the 7-cup level and confirm refill.
+   b. If the water level is sufficient, confirm and proceed.
+
+3. Heat the water
+   a. Simulate the sound of water heating (print statement).
+   b. Simulate the heating process with an appropriate wait (e.g., 5 seconds).
+
+4. Wait for the lights for the cup sizes to blink blue (indicating the water is ready)
+   a. Simulate this with an appropriate wait and a print statement.
+
+5. Remove a coffee pod from the storage drawer
+   a. Check if there are pods available in the storage drawer.
+   b. If available, remove one pod and update the pod count.
+   c. If no pods are available, display an alert message.
+
+6. Open the Keurig machine's pod lid
+   a. Simulate a one-second wait.
+
+7. Place the coffee pod inside the Keurig machine
+   a. Simulate a one-second wait.
+
+8. Close the Keurig machine lid
+   a. Simulate a one-second wait.
+
+9. Allow the user to select the desired cup size (small, medium, or large)
+   a. Accept user input for the cup size.
+   b. Confirm the selection and calculate the amount of water to be used.
+   c. Update the water level based on the cup size.
+   d. If there's not enough water for the selected size, display an alert and return to step 2.
+
+10. Brew the coffee
+   a. Simulate the brewing process for 45 seconds.
+   b. Display a message indicating that brewing has started and completed.
+
+11. Once brewing is complete, indicate that the coffee is ready
+   a. Turn all size lights blue.
+   b. Provide feedback to the user (e.g., "Your coffee is ready!").
+
+12. Start a 10-minute timer for automatic power-off
+   a. If the timer reaches 10 minutes without interaction, turn off the machine.
+   b. If the machine is used before the timer ends, reset the timer.
+   c. If the user chooses to make another selection, return to step 5.
+
+13. Perform clean-up actions post-brewing or post-automatic shut-off.

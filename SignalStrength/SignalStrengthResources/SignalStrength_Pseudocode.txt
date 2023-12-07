@@ -1,0 +1,66 @@
+# Pseudocode for the main menu and handling for SignalStrength.py program
+
+Import necessary modules (csv, logging, sys, traceback)
+
+Define class ESSIDCategorizer:
+    Initialize with data
+    Define categorize_essids method:
+        Initialize ranges (poor, weak, fair, good, excellent)
+        Loop through each row in data:
+            Try:
+                Check and parse 'Quality' and 'ESSID' values
+                Categorize ESSIDs based on quality into respective ranges
+            Catch any ValueError:
+                Print error message
+        Return dictionary of categorized ESSIDs
+
+Define load_data function with csv_path parameter:
+    Initialize local_data as empty list
+    Open csv file at csv_path
+    Read csv file and append each row to local_data
+    Return local_data
+
+Define print_data function with datas parameter:
+    Loop through each row in datas:
+        Print ESSID, Quality, and Scan Time
+
+Define get_unique_essids function with datas parameter:
+    Return a list of unique ESSIDs from datas
+
+Define filter_by_essid function with datas and essid parameters:
+    Return a list of rows where ESSID matches the provided essid
+
+Define class MenuMode:
+    Initialize:
+        Set user_input to empty
+        Load data using load_data function and store it
+
+    Define user_instructions method:
+        Call main_menu method
+
+    Define main_menu method:
+        Increment global ReplayCounter
+        Display menu options and get user input
+        Try:
+            Convert user input to integer and call run_mode method
+        Catch ValueError:
+            Print error message
+
+    Define run_mode method:
+        Try:
+            Check user_input and perform corresponding actions:
+                1 - Call print_data with loaded data
+                2 - Call get_unique_essids with loaded data and print results
+                3 - Get ESSID from user, filter data, and print results
+                4 - Create ESSIDCategorizer instance, categorize ESSIDs, and print results
+                5 - Print exit message and exit program
+        Catch any Exception:
+            Print error message and traceback
+        Check ReplayCounter or exit condition to decide whether to quit or repeat
+
+Define main function:
+    Create MenuMode instance
+    Load data using csv_file_path
+    Call user_instructions method of MenuMode instance
+
+Call main function if the script is run as main program

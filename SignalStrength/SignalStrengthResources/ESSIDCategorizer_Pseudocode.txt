@@ -1,0 +1,40 @@
+# This pseudocode is for the ESSID Categorization sorting algorithm.
+
+# ESSID,Quality,Category
+# NetworkName,68/70,Excellent
+# NetworkName,52/70,Good
+# NetworkName,42/70,Fair
+# NetworkName,37/70,Weak
+# NetworkName,28/70,Poor
+
+Define class ESSIDCategorizer:
+    Define constructor with parameter data:
+        Initialize instance variable data with the value of data
+
+    Define method categorize_essids:
+        Initialize lists for each range: poor, weak, fair, good, and excellent
+
+        Loop through each row in the instance variable data:
+            Try:
+                Check if both 'ESSID' and 'Quality' exist in the row:
+                    Split the 'ESSID' value based on '/'
+                    Check if the first part of the split result is numeric:
+                        Convert the first part to an integer and store in quality variable
+                        Categorize the ESSID into one of the ranges based on the quality:
+                            If quality is between 0 and 28, add to poor_range
+                            If quality is between 29 and 37, add to weak_range
+                            If quality is between 38 and 42, add to fair_range
+                            If quality is between 43 and 52, add to good_range
+                            If quality is between 53 and 68, add to excellent_range
+                    Else:
+                        Print a message indicating non-numeric quality value
+                Else:
+                    Print a message indicating missing 'Quality' or 'ESSID' column
+            Catch any exception and print an error message with the current row
+
+        Return a dictionary containing sets of ESSIDs for each range:
+            'Poor Range' with poor_range
+            'Weak Range' with weak_range
+            'Fair Range' with fair_range
+            'Good Range' with good_range
+            'Excellent Range' with excellent_range

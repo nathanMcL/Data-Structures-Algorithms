@@ -4,29 +4,4 @@
 Wi-Fi Signal Strength Data Collection
 ---
 
----
-title: Animal example
----
-classDiagram
-    note "From Duck till Zebra"
-    Animal <|-- Duck
-    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
-    Animal <|-- Fish
-    Animal <|-- Zebra
-    Animal : +int age
-    Animal : +String gender
-    Animal: +isMammal()
-    Animal: +mate()
-    class Duck{
-        +String beakColor
-        +swim()
-        +quack()
-    }
-    class Fish{
-        -int sizeInFeet
-        -canEat()
-    }
-    class Zebra{
-        +bool is_wild
-        +run()
-    }
+[![](https://mermaid.ink/img/pako:eNptkU9PwzAMxb-KlRNIm7j3gNStK-xQAeqAQ7uD17ptRJpA_myUdd8db70wCZ8iv5-fleejqExNIhKNMoeqQ-thk5QauOIiIx0ylrcwn9-PNXocYXGTke9M7W4nanHWYHl8dWRhrZ23ofLSaHea9OVl9knTCEnxJukAsVLgO4KE_bZ_oc3BjLCaoKDlVyBY5fk6cddUZ4nN0iKVyvPO3TBRV1Bqgh3hoViip9ZY-fOvVSr37PTIlKqCYhTiPVlsCV4CKumHKzqX3yOsi1ijGtjv2Rh79074ARZ1S24rZqIn26OsOc7jebIU_M-eShHxs6YGg_KlKPWJUQze5IOuRMSJ0UyET86XEomtxV5EDSrHXaqlNzabTnS51OkXxHiNCw?type=png)](https://mermaid.live/edit#pako:eNptkU9PwzAMxb-KlRNIm7j3gNStK-xQAeqAQ7uD17ptRJpA_myUdd8db70wCZ8iv5-fleejqExNIhKNMoeqQ-thk5QauOIiIx0ylrcwn9-PNXocYXGTke9M7W4nanHWYHl8dWRhrZ23ofLSaHea9OVl9knTCEnxJukAsVLgO4KE_bZ_oc3BjLCaoKDlVyBY5fk6cddUZ4nN0iKVyvPO3TBRV1Bqgh3hoViip9ZY-fOvVSr37PTIlKqCYhTiPVlsCV4CKumHKzqX3yOsi1ijGtjv2Rh79074ARZ1S24rZqIn26OsOc7jebIU_M-eShHxs6YGg_KlKPWJUQze5IOuRMSJ0UyET86XEomtxV5EDSrHXaqlNzabTnS51OkXxHiNCw)

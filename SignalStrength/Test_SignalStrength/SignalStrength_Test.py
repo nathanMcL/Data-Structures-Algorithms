@@ -6,11 +6,11 @@ import logging
 import sys
 import traceback
 
-from SignalStrength.Test_SignalStrength.ESSIDCategorizer import ESSIDCategorizer
-from SignalStrengthConfig_Test import csv_file_path
 # Import the ESSIDAverageCalculator class
 from SignalStrength.Test_SignalStrength.ESSIDAverageCalculator import ESSIDAverageCalculator
-
+from SignalStrength.Test_SignalStrength.ESSIDCategorizer import ESSIDCategorizer
+from SignalStrength.Test_SignalStrength.ScanTimeAnalyzer import ScanTimeAnalyzer
+from SignalStrengthConfig_Test import csv_file_path
 
 logger = logging.getLogger(__name__)
 ReplayCounter = 1
@@ -39,9 +39,10 @@ def filter_by_essid(datas, essid):
 
 
 class MenuMode:
-    def __init__(self) -> None:
+    def __init__(self):
         self.user_input = ""
         self.data = load_data(csv_file_path)  # Load data in the constructor
+        self.scan_time_analyzer = ScanTimeAnalyzer(self.data)  # Create ScanTimeAnalyzer instance
 
     def user_instructions(self):  # Define this method to show the menu
         self.main_menu()
@@ -57,7 +58,8 @@ class MenuMode:
                             \n 3. Enter 3 to Filter by ESSID. O(n) \
                             \n 4. Enter 4 to Categorize ESSIDs. O(n) \
                             \n 5. Enter 5 to Calculate Average Quality. O(k * m * n) \
-                            \n 6. Enter 6 Quit.  \
+                            \n 6. Enter 6 to Analyze Poor/Weak ranges. O(n) \
+                            \n 7. Enter 7 Quit.  \
                             \n\n Please type your selection and push enter: """))
 
         try:
@@ -90,6 +92,7 @@ class MenuMode:
                 categorized_essids = categorizer.categorize_essids()
                 for range_name, essids in categorized_essids.items():
                     print(f"{range_name} ESSIDs: {essids}")
+
             #  For each category, it iterates over its ESSIDs and for each ESSID,
             #  it iterates over all data rows.
             #  If k is the number of categories and m is the average number of ESSIDs per category,
@@ -106,7 +109,12 @@ class MenuMode:
                 else:
                     for range_name, average in averages.items():
                         print(f"{range_name} Average Quality: {average}")
+
             elif self.user_input == 6:
+                print("Analyzing Scan Time for Poor and Weak Signal Ranges:")
+                self.scan_time_analyzer.analyze_scan_time()
+
+            elif self.user_input == 7:
                 print("Exiting...")
                 sys.exit()  # Exit the program
 
@@ -130,8 +138,6 @@ class MenuMode:
 
 def main():
     menu = MenuMode()
-    global data  # Declare data as a global variable
-    data = load_data(csv_file_path)
     menu.user_instructions()
 
 

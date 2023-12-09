@@ -24,7 +24,7 @@ class ESSIDCategorizer:
                 # Check if both 'ESSID' and 'Quality' columns exist in the row.
                 if 'ESSID' in row and 'Quality' in row:
                     # Split the 'ESSID' value by '/' and check if the first part is numeric.
-                    quality_parts = row['ESSID'].split('/')
+                    quality_parts = row['ESSID'].split('/')  # Must use ESSID.
                     if quality_parts[0].isnumeric():
                         # Convert the first part of 'ESSID' to an integer (represents quality).
                         quality = int(quality_parts[0])
@@ -38,7 +38,7 @@ class ESSIDCategorizer:
                             fair_range.append(row['ESSID'])
                         elif 43 <= quality <= 52:
                             good_range.append(row['ESSID'])
-                        elif 53 <= quality <= 68:
+                        elif 53 <= quality <= 70:
                             excellent_range.append(row['ESSID'])
                     else:
                         # Print a warning if the quality value is not numeric.

@@ -1,0 +1,33 @@
+Class ESSIDAverageCalculator:
+
+    Constructor (data, categorized_essids):
+        Set self.data to data
+        Set self.categorized_essids to categorized_essids
+
+    Function calculate_averages:
+        Initialize total_quality dictionary with keys as 'Poor Range', 'Weak Range', 'Fair Range', 'Good Range', 'Excellent Range' and values as 0
+        Initialize count dictionary with the same keys and values as 0
+
+        For each range_name and essids in self.categorized_essids:
+            For each essid in essids:
+                For each row in self.data:
+                    If row's 'ESSID' matches the current essid:
+                        Try:
+                            Split row's 'Quality' value using '/' and store in quality_parts
+                            If the first part of quality_parts is numeric:
+                                Convert the first part of quality_parts to integer and store in quality
+                                Add quality to total_quality at key range_name
+                                Increment count at key range_name by 1
+                        Catch Exception as e:
+                            Print "Error processing row" with row and exception e
+
+        Initialize averages dictionary
+
+        For each range_name in total_quality:
+            If count at range_name is greater than 0:
+                Calculate average as total_quality at range_name divided by count at range_name
+                Set averages at range_name to the calculated average
+            Else:
+                Set averages at range_name to None
+
+        Return averages

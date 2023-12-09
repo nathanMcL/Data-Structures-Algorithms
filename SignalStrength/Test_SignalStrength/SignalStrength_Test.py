@@ -1,9 +1,16 @@
 # Wi-Fi Signal Strength Data
 
+
 import csv
 import logging
 import sys
-from SignalStrengthConfig import csv_file_path
+import traceback
+
+from SignalStrength.Test_SignalStrength.ESSIDCategorizer import ESSIDCategorizer
+from SignalStrengthConfig_Test import csv_file_path
+# Import the ESSIDAverageCalculator class
+from SignalStrength.Test_SignalStrength.ESSIDAverageCalculator import ESSIDAverageCalculator
+
 
 logger = logging.getLogger(__name__)
 ReplayCounter = 1
@@ -43,12 +50,14 @@ class MenuMode:
         global ReplayCounter
         ReplayCounter += 1
 
-        user_input = (input("""\nWi-Fi Signal Strength Menu: \
-                            \n 1. Enter 1 to view all data. \
-                            \n 2. Enter 2 to View unique ESSIDs. \
-                            \n 3. Enter 3 to Filter by ESSID. \
-                            \n 4. Enter 4 do something. \
-                            \n 5. Enter 5 Quit.  \
+        user_input = (input("""\n
+                            \n  Wi-Fi Signal Strength Menu: \
+                            \n 1. Enter 1 to view all data. O(n) \
+                            \n 2. Enter 2 to View unique ESSIDs. O(1) \
+                            \n 3. Enter 3 to Filter by ESSID. O(n) \
+                            \n 4. Enter 4 to Categorize ESSIDs. O(n) \
+                            \n 5. Enter 5 to Calculate Average Quality. O(k * m * n) \
+                            \n 6. Enter 6 Quit.  \
                             \n\n Please type your selection and push enter: """))
 
         try:
@@ -60,24 +69,50 @@ class MenuMode:
 
     def run_mode(self):
         try:
+            # O(n). This is a linear operation where n is the number of rows in the data.
+            # Each row is printed once.
             if self.user_input == 1:
                 print_data(self.data)
+            # O(n). The operation iterates through all rows once,
+            # adding ESSIDs to a set (which has O(1) insertion time)
             elif self.user_input == 2:
                 unique_essids = get_unique_essids(self.data)
                 print(unique_essids)
+            # O(n). It involves scanning through all the rows to find matches.
             elif self.user_input == 3:
                 essid = input("Enter ESSID to filter by: ")
                 filtered_data = filter_by_essid(self.data, essid)
                 print_data(filtered_data)
+            # O(n). Each row is examined once, and the operation to categorize
+            # an ESSID is constant time.
             elif self.user_input == 4:
-                # You need to define what "do something" does
-                print("Option 4 selected. Define this action.")
+                categorizer = ESSIDCategorizer(self.data)
+                categorized_essids = categorizer.categorize_essids()
+                for range_name, essids in categorized_essids.items():
+                    print(f"{range_name} ESSIDs: {essids}")
+            #  For each category, it iterates over its ESSIDs and for each ESSID,
+            #  it iterates over all data rows.
+            #  If k is the number of categories and m is the average number of ESSIDs per category,
+            #  the complexity for this part is O(k * m * n).
             elif self.user_input == 5:
+                categorizer = ESSIDCategorizer(self.data)
+                categorized_essids = categorizer.categorize_essids()
+                average_calculator = ESSIDAverageCalculator(self.data, categorized_essids)
+                averages = average_calculator.calculate_averages()
+
+                # Check if all values in averages are None
+                if all(value is None for value in averages.values()):
+                    print("Error: No averages calculated.")
+                else:
+                    for range_name, average in averages.items():
+                        print(f"{range_name} Average Quality: {average}")
+            elif self.user_input == 6:
                 print("Exiting...")
                 sys.exit()  # Exit the program
 
         except Exception as e:
             print("Error somewhere: ", e)
+            traceback.print_exc()
 
         if ReplayCounter >= 10 or exit is True:
             print("You have reached the max retries for this program, 10. End of program...")
@@ -91,11 +126,6 @@ class MenuMode:
             else:
                 print("Replay counter", ReplayCounter, "out of 10")
                 self.user_instructions()  # Changed from inner_main to user_instructions
-
-
-# def inner_main(self):
-# self.user_instructions()
-# self.run_mode()
 
 
 def main():

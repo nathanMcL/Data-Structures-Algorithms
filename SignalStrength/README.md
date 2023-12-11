@@ -1,4 +1,3 @@
-# Wifi_SignalStrength
 
 ---
 Wi-Fi Signal Strength Data Collection
@@ -16,7 +15,7 @@ How to run our tests and what they mean
 
 How we built it (your tech stack)
 
-Challenges we ran into
+Challenges we ran into: Where to start...
 
 Accomplishments that we're proud of
 

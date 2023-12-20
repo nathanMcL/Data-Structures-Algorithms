@@ -14,7 +14,7 @@ How to run our demo on our included data: Work in progress :)
 How to run our tests and what they mean
 
 How we built it (your tech stack)
-Starting with the bash script SignalStrength.sh that is used to collect the data from a Raspberry Pi 4, Debian GNU/Linux 11 Operating System.
+Starting with the bash script SignalStrength.sh (within the resources folder) That bash script is used to collect the Wi-Fi data from a Raspberry Pi 4, Debian GNU/Linux 11 Operating System.
 Once the data is collected, (The idea is to ssh into the Raspberry Pi devices and once navigated to the directory, download the csv data to the remote device, things are complicated :)
 I used Python 3.12 to interact with and interpret the wifi_signal_strength.csv data.
 

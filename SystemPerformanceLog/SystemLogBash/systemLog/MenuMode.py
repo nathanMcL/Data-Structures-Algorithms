@@ -1,0 +1,122 @@
+import csv
+import logging
+import sys
+import traceback
+
+from SystemLogConfig import os_log_path
+
+logger = logging.getLogger(__name__)
+
+ReplayCounter = 1
+
+
+def load_data(os_log_path):
+    data = []
+    try:
+        with open(os_log_path, mode='r', newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                data.append(row)
+    except FileNotFoundError:
+        print(f"The file {os_log_path} was not found.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        sys.exit(1)
+    return data
+
+
+def print_data(data):
+    for row in data:
+        print(', '.join(f"{k}: {v}" for k, v in row.items()))
+
+
+def get_unique_os_names(data):
+    return set(row['OS Name'] for row in data)
+
+
+def filter_by_os_name(data, os_name):
+    return [row for row in data if row['OS Name'] == os_name]
+
+
+def filter_by_date_time(data, date_time):
+    return [row for row in data if row['Date Time'] == date_time]
+
+
+class MenuMain:
+    def __init__(self):
+        self.user_input = ""
+        self.data = load_data(os_log_path)  # Load data in the constructor
+
+    def user_instructions(self):  # Define this method to show the menu
+        self.main_menu()
+
+    def main_menu(self):
+        global ReplayCounter
+        ReplayCounter += 1
+
+        user_input = (input("""\n
+                            \n System Performance Menu: \
+                            \n Enter 1 to View All Data. \
+                            \n Enter 2 to View Unique OS Names. \
+                            \n Enter 3 to Filter by OS Name. \
+                            \n Enter 4 to Filter by Date and Time. \
+                            \n Enter 5 to Quit. \
+                            \n\n Please type your selection and push enter: """))
+
+        try:
+            self.user_input = int(user_input)
+            self.run_mode()
+        except ValueError:
+            print("Please enter a number from the list above")
+            self.user_input = None
+
+    def run_mode(self):
+        global ReplayCounter
+        try:
+            # Convert user input to int here instead of checking against string values.
+            user_choice = int(self.user_input)  # Convert the stored string to integer for comparison.
+            if user_choice == 1:
+                print_data(self.data)
+            elif user_choice == 2:
+                unique_os_names = get_unique_os_names(self.data)
+                print("\nUnique OS Names:")
+                for name in unique_os_names:
+                    print(name)
+            elif user_choice == 3:
+                os_name = input("Enter OS Name to filter by: ")
+                filtered_data = filter_by_os_name(self.data, os_name)
+                print_data(filtered_data)
+            elif user_choice == 4:
+                date_time = input("Enter Date and Time to filter by (format: YYYY-MM-DD HH:MM:SS): ")
+                filtered_data = filter_by_date_time(self.data, date_time)
+                print_data(filtered_data)
+            elif user_choice == 5:
+                print("Exiting...")
+                sys.exit()  # Exit the program
+
+        except Exception as e:
+            print("Error Somewhere: ", e)
+            traceback.print_exc()  # Corrected from print_exe to print_exc
+
+        if ReplayCounter >= 10:
+            print("You have reached the max retries for this program, 10. End of program...")
+            sys.exit()
+        else:
+            replay = input("Push enter to run another operation or type 'exit' to quit: ")
+
+            if replay.lower() == "exit":  # Replay the program main loop or type exit to quit
+                print("End of program...")
+                sys.exit()
+            else:
+                print("Replay counter", ReplayCounter, "out of 10")
+                self.user_instructions()
+
+
+def main():
+    menu = MenuMain()
+    menu.user_instructions()
+
+
+if __name__ == "__main__":
+    main()

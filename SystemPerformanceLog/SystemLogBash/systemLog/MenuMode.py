@@ -4,6 +4,7 @@ import sys
 import traceback
 
 from SystemLogConfig import os_log_path
+from CPU_Temp_Averages import CPUTempAverages
 
 logger = logging.getLogger(__name__)
 
@@ -56,13 +57,14 @@ class MenuMain:
         ReplayCounter += 1
 
         user_input = (input("""\n
-                            \n System Performance Menu: \
-                            \n Enter 1 to View All Data. \
-                            \n Enter 2 to View Unique OS Names. \
-                            \n Enter 3 to Filter by OS Name. \
-                            \n Enter 4 to Filter by Date and Time. \
-                            \n Enter 5 to Quit. \
-                            \n\n Please type your selection and push enter: """))
+                        \n System Performance Menu: \
+                        \n Enter 1 to View All Data. \
+                        \n Enter 2 to View Unique OS Names. \
+                        \n Enter 3 to Filter by OS Name. \
+                        \n Enter 4 to Filter by Date and Time. \
+                        \n Enter 5 to View CPU Temperature Average. \
+                        \n Enter 6 to Quit. \
+                        \n\n Please type your selection and push enter: """))
 
         try:
             self.user_input = int(user_input)
@@ -74,13 +76,12 @@ class MenuMain:
     def run_mode(self):
         global ReplayCounter
         try:
-            # Convert user input to int here instead of checking against string values.
-            user_choice = int(self.user_input)  # Convert the stored string to integer for comparison.
+            user_choice = int(self.user_input)
             if user_choice == 1:
                 print_data(self.data)
             elif user_choice == 2:
                 unique_os_names = get_unique_os_names(self.data)
-                print("\nUnique OS Names:")
+                print("\n OS Names:")
                 for name in unique_os_names:
                     print(name)
             elif user_choice == 3:
@@ -92,12 +93,16 @@ class MenuMain:
                 filtered_data = filter_by_date_time(self.data, date_time)
                 print_data(filtered_data)
             elif user_choice == 5:
+                self.show_cpu_temp_stats()  # Call the new method for CPU temperature stats
+            elif user_choice == 6:
                 print("Exiting...")
                 sys.exit()  # Exit the program
+            else:
+                print("Invalid option. Please try again.")
 
         except Exception as e:
             print("Error Somewhere: ", e)
-            traceback.print_exc()  # Corrected from print_exe to print_exc
+            traceback.print_exc()
 
         if ReplayCounter >= 10:
             print("You have reached the max retries for this program, 10. End of program...")
@@ -105,12 +110,17 @@ class MenuMain:
         else:
             replay = input("Push enter to run another operation or type 'exit' to quit: ")
 
-            if replay.lower() == "exit":  # Replay the program main loop or type exit to quit
+            if replay.lower() == "exit":
                 print("End of program...")
                 sys.exit()
             else:
                 print("Replay counter", ReplayCounter, "out of 10")
                 self.user_instructions()
+
+    def show_cpu_temp_stats(self):
+        cpu_temp_stats = CPUTempAverages(self.data)
+        total_temp, average_temp = cpu_temp_stats.total_average()
+        print(f"Average CPU Temp: {average_temp:.2f}\n")
 
 
 def main():

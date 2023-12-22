@@ -7,9 +7,9 @@ import sys
 import traceback
 
 # Import the ESSIDAverageCalculator class
-from SignalStrength.Test_SignalStrength.ESSIDAverageCalculator import ESSIDAverageCalculator
-from SignalStrength.Test_SignalStrength.ESSIDCategorizer import ESSIDCategorizer
-from SignalStrength.Test_SignalStrength.ScanTimeAnalyzer import ScanTimeAnalyzer
+from ESSIDAverageCalculator import ESSIDAverageCalculator
+from ESSIDCategorizer import ESSIDCategorizer
+from ScanTimeAnalyzer import ScanTimeAnalyzer
 from SignalStrengthConfig_Test import csv_file_path
 
 logger = logging.getLogger(__name__)

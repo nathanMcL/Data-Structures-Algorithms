@@ -15,12 +15,12 @@ Work in progress :)
 ---
 How to run our tests and what they mean:
 ---
-
+Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network)
 ---
 How we built it (your tech stack):
 ---
-Raspberry Pi with Debian GNU/Linux 11 Operating System
-Pycharm & VS Code with Python 3.12
+Raspberry Pi with Debian GNU/Linux 11 Operating System.
+Pycharm & VS Code with Python 3.12.
 
 
 ---

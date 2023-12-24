@@ -5,6 +5,9 @@ import traceback
 
 from SystemLogConfig import os_log_path
 from CPU_Temp_Averages import CPUTempAverages
+from ESSIDAverageCalculator import WiFiStrengthAverageCalculator
+from ESSIDCategorizer import WiFiCategorizer
+from CPUUsageScan import CPUScanCategorizer
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +66,10 @@ class MenuMain:
                         \n Enter 3 to Filter by OS Name. \
                         \n Enter 4 to Filter by Date and Time. \
                         \n Enter 5 to View CPU Temperature Average. \
-                        \n Enter 6 to Quit. \
+                        \n Enter 6 to Categorize Wi-Fi Strength. \
+                        \n Enter 7 to  View Wi-Fi Average Quality. \
+                        \n Enter 9 to View CPU Usage by Time Range. \
+                        \n Enter 10 to Quit. \
                         \n\n Please type your selection and push enter: """))
 
         try:
@@ -95,6 +101,20 @@ class MenuMain:
             elif user_choice == 5:
                 self.show_cpu_temp_stats()  # Call the new method for CPU temperature stats
             elif user_choice == 6:
+                categorizer = WiFiCategorizer(self.data)
+                categorized_strengths = categorizer.categorize_strengths()
+                for category, rows in categorized_strengths.items():
+                    print(f"{category}: {len(rows)} records")
+            elif user_choice == 7:
+                categorizer = WiFiCategorizer(self.data)
+                categorized_strengths = categorizer.categorize_strengths()
+                strength_calculator = WiFiStrengthAverageCalculator(categorized_strengths)
+                averages = strength_calculator.calculate_averages()
+                for category, avg in averages.items():
+                    print(f"{category} Average Strength: {avg:.2f}")
+            elif user_choice == 9:
+                self.show_cpu_usage_by_time()
+            elif user_choice == 10:
                 print("Exiting...")
                 sys.exit()  # Exit the program
             else:
@@ -121,6 +141,20 @@ class MenuMain:
         cpu_temp_stats = CPUTempAverages(self.data)
         total_temp, average_temp = cpu_temp_stats.total_average()
         print(f"Average CPU Temp: {average_temp:.2f}\n")
+
+    def show_cpu_usage_by_time(self):
+        try:
+            categorizer = CPUScanCategorizer(self.data)
+            categorized_cpu_usages = categorizer.categorize_time_range()
+            averages = categorizer.calculate_averages(categorized_cpu_usages)
+
+            for category, rows in categorized_cpu_usages.items():
+                print(f"{category}: {len(rows)} records")
+                avg = averages[category]
+                print(f"{category} Average CPU Usage: {avg:.2f}")
+        except Exception as e:
+            print("An error occurred in show_cpu_usage_by_time: ", e)
+            traceback.print_exc()
 
 
 def main():

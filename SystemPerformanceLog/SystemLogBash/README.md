@@ -22,6 +22,7 @@ How we built it (your tech stack):
 Raspberry Pi with Debian GNU/Linux 11 Operating System
 Pycharm & VS Code with Python 3.12
 
+
 ---
 Challenges we ran into:
 ---

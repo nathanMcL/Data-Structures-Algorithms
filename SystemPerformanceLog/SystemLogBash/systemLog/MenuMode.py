@@ -8,6 +8,7 @@ from CPU_Temp_Averages import CPUTempAverages
 from ESSIDAverageCalculator import WiFiStrengthAverageCalculator
 from ESSIDCategorizer import WiFiCategorizer
 from CPUUsageScan import CPUScanCategorizer
+from MemoryUsageCategorizer import MemoryUsageCategorizer
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +69,8 @@ class MenuMain:
                         \n Enter 5 to View CPU Temperature Average. \
                         \n Enter 6 to Categorize Wi-Fi Strength. \
                         \n Enter 7 to  View Wi-Fi Average Quality. \
-                        \n Enter 9 to View CPU Usage by Time Range. \
+                        \n Enter 8 to View CPU Usage. \
+                        \n Enter 9 to View Memory Usage. \
                         \n Enter 10 to Quit. \
                         \n\n Please type your selection and push enter: """))
 
@@ -112,8 +114,10 @@ class MenuMain:
                 averages = strength_calculator.calculate_averages()
                 for category, avg in averages.items():
                     print(f"{category} Average Strength: {avg:.2f}")
-            elif user_choice == 9:
+            elif user_choice == 8:
                 self.show_cpu_usage_by_time()
+            elif user_choice == 9:
+                self.analyze_memory_usage()
             elif user_choice == 10:
                 print("Exiting...")
                 sys.exit()  # Exit the program
@@ -155,6 +159,10 @@ class MenuMain:
         except Exception as e:
             print("An error occurred in show_cpu_usage_by_time: ", e)
             traceback.print_exc()
+
+    def analyze_memory_usage(self):
+        categorizer = MemoryUsageCategorizer(self.data)
+        categorizer.analyze_memory_usage()
 
 
 def main():

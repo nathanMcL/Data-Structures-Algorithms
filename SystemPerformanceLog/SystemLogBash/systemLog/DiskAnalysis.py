@@ -5,27 +5,51 @@ class DiskAnalysis:
         self.data = data
 
     def print_current_disk_usage(self):
-        current_usage = self.data[-1]['Disk Usage']
-        print(f"Current Logged Disk Usage: {current_usage}")
+        if not self.data:
+            print("No data available to analyze.")
+            return
+
+        try:
+            current_usage = self.data[-1].get('Disk Usage', 'N/A')
+            print(f"Current Logged Disk Usage: {current_usage}")
+        except IndexError:
+            print("Error: Data list is empty.")
 
     def find_nearest_change(self):
-        current_usage = float(self.data[-1]['Disk Usage'].rstrip('%'))
-        closest_diff = float('inf')
-        closest_usage = None
+        if not self.data:
+            print("No data available to analyze.")
+            return
 
-        for row in reversed(self.data[:-1]):
-            usage = float(row['Disk Usage'].rstrip('%'))
-            diff = abs(usage - current_usage)
+        try:
+            current_usage_str = self.data[-1].get('Disk Usage', '0').rstrip('%')
+            if not current_usage_str:
+                print("Error: Current Disk Usage is not available.")
+                return
 
-            if diff < closest_diff:
-                closest_diff = diff
-                closest_usage = usage
+            current_usage = float(current_usage_str)
+            if current_usage == 0:
+                print("Current Disk Usage is 0%. No valid comparison can be made.")
+                return
 
-            if diff > 0:  # Stop if a change is found
-                break
+            closest_diff = float('inf')
+            closest_usage = None
 
-        if closest_usage is not None:
-            deviation = ((closest_usage - current_usage) / current_usage) * 100
-            print(f"Nearest changed Disk Usage: {closest_usage}%, Deviation: {deviation: .2f}%")
-        else:
-            print("No change in Disk Usage was found.")
+            for row in reversed(self.data[:-1]):
+                usage_str = row.get('Disk Usage', '0').rstrip('%')
+                usage = float(usage_str)
+                diff = abs(usage - current_usage)
+
+                if diff < closest_diff:
+                    closest_diff = diff
+                    closest_usage = usage
+
+                if diff > 0:  # Stop if a change is found
+                    break
+
+            if closest_usage is not None and current_usage != 0:
+                deviation = ((closest_usage - current_usage) / current_usage) * 100
+                print(f"Nearest changed Disk Usage: {closest_usage}%, Deviation: {deviation:.2f}%")
+            else:
+                print("No change in Disk Usage was found.")
+        except ValueError:
+            print("Error: Invalid data format for Disk Usage.")

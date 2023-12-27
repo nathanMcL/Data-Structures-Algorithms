@@ -9,6 +9,7 @@ from ESSIDAverageCalculator import WiFiStrengthAverageCalculator
 from ESSIDCategorizer import WiFiCategorizer
 from CPUUsageScan import CPUScanCategorizer
 from MemoryUsageCategorizer import MemoryUsageCategorizer
+from DiskAnalysis import DiskAnalysis
 
 logger = logging.getLogger(__name__)
 
@@ -66,12 +67,13 @@ class MenuMain:
                         \n Enter 2 to View Unique OS Names. \
                         \n Enter 3 to Filter by OS Name. \
                         \n Enter 4 to Filter by Date and Time. \
-                        \n Enter 5 to View CPU Temperature Average. \
+                        \n Enter 5 to View CPU Temperature. \
                         \n Enter 6 to Categorize Wi-Fi Strength. \
                         \n Enter 7 to  View Wi-Fi Average Quality. \
                         \n Enter 8 to View CPU Usage. \
                         \n Enter 9 to View Memory Usage. \
-                        \n Enter 10 to Quit. \
+                        \n Enter 10 to View Disk Usage. \
+                        \n Enter 0 to Quit. \
                         \n\n Please type your selection and push enter: """))
 
         try:
@@ -119,6 +121,10 @@ class MenuMain:
             elif user_choice == 9:
                 self.analyze_memory_usage()
             elif user_choice == 10:
+                self.disk_analysis = DiskAnalysis(self.data)
+                self.disk_analysis.print_current_disk_usage()
+                self.disk_analysis.find_nearest_change()
+            elif user_choice == 0:
                 print("Exiting...")
                 sys.exit()  # Exit the program
             else:

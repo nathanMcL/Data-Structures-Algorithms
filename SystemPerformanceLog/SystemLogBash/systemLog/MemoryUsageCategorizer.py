@@ -9,11 +9,21 @@ class MemoryUsageCategorizer:
 
     @staticmethod
     def get_hour_from_datetime(date_time_str):
-        return datetime.strptime(date_time_str, "%Y-%m-%d %H:%M:%S").hour
+        try:
+            return datetime.strptime(date_time_str, "%Y-%m-%d %H:%M:%S").hour
+        except ValueError:
+            print(f"Error parsing date time: {date_time_str}")
+            return None  # Or some default value
 
     def categorize_by_time(self):
         for row in self.data:
-            hour = self.get_hour_from_datetime(row['Date Time'])
+            date_time_str = row.get('Date Time')
+            if not date_time_str:
+                print("Missing or invalid 'Date Time'")
+                continue  # Skip this row if 'Date Time' is missing
+            hour = self.get_hour_from_datetime(date_time_str)
+            if hour is None:
+                continue  # Skip this row if the hour could not be parsed
             if 5 <= hour < 7:
                 self.categorized_data['Morning'].append(float(row['Memory Usage']))
                 self.date_info['Morning'].append(row['Date Time'])

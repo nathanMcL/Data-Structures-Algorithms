@@ -20,8 +20,9 @@ def load_data(os_log_path):
     data = []
     try:
         with open(os_log_path, mode='r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
+            reader = csv.DictReader(csvfile, delimiter='\t')  # Use tab as the delimter
             for row in reader:
+                #print(row.keys())  # Add this line to check the dictionary keys
                 data.append(row)
     except FileNotFoundError:
         print(f"The file {os_log_path} was not found.")

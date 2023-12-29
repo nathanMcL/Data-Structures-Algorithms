@@ -14,7 +14,17 @@ class CPUScanCategorizer:
         categorized_data = {key: [] for key in self.time_ranges}
 
         for row in self.data:
-            dt = datetime.datetime.strptime(row['Date Time'], '%Y-%m-%d %H:%M:%S')
+            date_time_str = row.get('Date Time')
+            if not date_time_str:
+                print("Missing or invalid 'Date Time'")
+                continue  # Skip this row if 'Date Time' is missing
+
+            try:
+                dt = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                print(f"Error parsing 'Date Time': {date_time_str}")
+                continue  # Skip this row if the date can't be parsed
+
             for range_name, times in self.time_ranges.items():
                 if times['start'] <= dt.time() <= times['end']:
                     categorized_data[range_name].append(row)

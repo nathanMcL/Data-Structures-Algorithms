@@ -28,9 +28,10 @@ Pycharm & VS Code with Python 3.12.
 ---
 Challenges we ran into:
 ---
-Trying to get the code files to mesh with MenuMain
+Trying to get the code files to mesh with MenuMain.
 Trying to schedule the crontab -e file with command to execute the program at set times.
-Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload.
+Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload. 
+Trying to debug the program in gitpod. 
  
 ---
 Accomplishments that we're proud of:
@@ -40,7 +41,7 @@ So far everything!
 ---
 What we learned:
 ---
-See the above challenges, those are only a few… what else?
+
 
 ---
 What's next for the project next quarter (as an app engineered for the web):

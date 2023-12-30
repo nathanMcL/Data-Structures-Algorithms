@@ -15,7 +15,7 @@ Work in progress :)
 ---
 How to run our tests and what they mean:
 ---
-Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network)
+Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network). 
 
 
 ---
@@ -41,7 +41,7 @@ So far everything!
 ---
 What we learned:
 ---
-Running the program in Pycharm, and Running the program with VS Code, is not the Gitpod! 
+Running the program in Pycharm, and Running the program with VS Code, is not Gitpod! 
 
 ---
 What's next for the project next quarter (as an app engineered for the web):

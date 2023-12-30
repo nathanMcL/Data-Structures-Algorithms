@@ -31,7 +31,7 @@ Challenges we ran into:
 Trying to get the code files to mesh with MenuMain.
 Trying to schedule the crontab -e file with command to execute the program at set times.
 Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload. 
-Trying to debug the program in gitpod. 
+Trying to debug the program in gitpod.  
  
 ---
 Accomplishments that we're proud of:
@@ -41,7 +41,7 @@ So far everything!
 ---
 What we learned:
 ---
-
+Running the program in Pycharm, and Running the program with VS Code, is not the Gitpod! 
 
 ---
 What's next for the project next quarter (as an app engineered for the web):

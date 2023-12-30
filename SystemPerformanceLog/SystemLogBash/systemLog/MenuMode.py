@@ -10,6 +10,7 @@ from ESSIDCategorizer import WiFiCategorizer
 from CPUUsageScan import CPUScanCategorizer
 from MemoryUsageCategorizer import MemoryUsageCategorizer
 from DiskAnalysis import DiskAnalysis
+from NetworkTrafficFormat import NetworkTrafficFormat
 
 logger = logging.getLogger(__name__)
 
@@ -20,9 +21,8 @@ def load_data(os_log_path):
     data = []
     try:
         with open(os_log_path, mode='r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile, delimiter='\t')  # Use tab as the delimter
+            reader = csv.DictReader(csvfile)
             for row in reader:
-                #print(row.keys())  # Add this line to check the dictionary keys
                 data.append(row)
     except FileNotFoundError:
         print(f"The file {os_log_path} was not found.")
@@ -74,6 +74,7 @@ class MenuMain:
                         \n Enter 8 to View CPU Usage. \
                         \n Enter 9 to View Memory Usage. \
                         \n Enter 10 to View Disk Usage. \
+                        \n Enter 11 to View Network Traffic Usage \
                         \n Enter 0 to Quit. \
                         \n\n Please type your selection and push enter: """))
 
@@ -125,6 +126,10 @@ class MenuMain:
                 self.disk_analysis = DiskAnalysis(self.data)
                 self.disk_analysis.print_current_disk_usage()
                 self.disk_analysis.find_nearest_change()
+            elif user_choice == 11:
+                self.network_traffic = NetworkTrafficFormat(self.data)
+                # self.network_traffic.print_converted_network_traffic()
+                self.network_traffic.prompt_daily_average()
             elif user_choice == 0:
                 print("Exiting...")
                 sys.exit()  # Exit the program

@@ -1,3 +1,13 @@
+# Method is O(n)
+ 
+# We iterate through each category in categorized_data. 
+# The number of categories is fixed and does not depend on the size of the input data
+
+# For each category, we iterate through each row in rows. 
+# The total number of rows across all categories is proportional to the size of the input data.
+
+# Inside the inner loop, we perform constant-time operations for each row conversion to float and conduct arithmetic operations.
+
 import datetime
 
 

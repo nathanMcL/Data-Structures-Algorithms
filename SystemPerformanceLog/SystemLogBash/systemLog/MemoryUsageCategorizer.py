@@ -1,5 +1,7 @@
-from datetime import datetime
+# Method is O(n).
 
+ 
+from datetime import datetime
 
 class MemoryUsageCategorizer:
     def __init__(self, data):
@@ -35,6 +37,9 @@ class MemoryUsageCategorizer:
                 self.date_info['Evening'].append(row['Date Time'])
         return self.categorized_data
 
+    # This method checks for deviations in memory usage from the mean. 
+    # It iterates over each category and then over each data point in that category, 
+    # comparing it to the mean.
     def check_deviations(self, means):
         deviations = {'Above' : [], 'Below': []}
         for category in self.date_info:
@@ -54,6 +59,9 @@ class MemoryUsageCategorizer:
                 means[time_frame] = 0
         return means
 
+    # This method computes the variation from the lowest and highest mean memory usages. 
+    # It involves iterating over a fixed number of categories (constant) and performing arithmetic operations, 
+    # which are constant time. 
     def calculate_variation(self, means):
         min_mean = min(means.values())
         max_mean = max(means.values())
@@ -61,6 +69,11 @@ class MemoryUsageCategorizer:
         variation_from_highest = {k: max_mean - v for k, v in means.items() if v != max_mean}
         return variation_from_lowest, variation_from_highest
 
+    # This is the primary method that ties together the other methods.
+    # It sequentially calls categorize_by_time, calculate_means, calculate_variation, and check_deviations. 
+    # The complexity of this method is the sum of the complexities of these individual methods.  
+    # However, since each method has a complexity of O(n) and they all operate on the same dataset, 
+    # the overall complexity of analyze_memory_usage remains O(n).
     def analyze_memory_usage(self):
         categorized_data = self.categorize_by_time()
         means = self.calculate_means(categorized_data)

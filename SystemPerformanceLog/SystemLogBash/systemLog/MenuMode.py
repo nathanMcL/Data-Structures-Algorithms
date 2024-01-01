@@ -68,13 +68,13 @@ class MenuMain:
                         \n Enter 2 to View Unique OS Names. \
                         \n Enter 3 to Filter by OS Name. \
                         \n Enter 4 to Filter by Date and Time. \
-                        \n Enter 5 to View CPU Temperature. \
-                        \n Enter 6 to Categorize Wi-Fi Strength. \
-                        \n Enter 7 to  View Wi-Fi Average Quality. \
-                        \n Enter 8 to View CPU Usage. \
-                        \n Enter 9 to View Memory Usage. \
-                        \n Enter 10 to View Disk Usage. \
-                        \n Enter 11 to View Network Traffic Usage \
+                        \n Enter 5 to View CPU Temperature. O(n) \
+                        \n Enter 6 to Categorize Wi-Fi Strength. O(n) \
+                        \n Enter 7 to  View Wi-Fi Average Quality. O(n) \
+                        \n Enter 8 to View CPU Usage. O(n) \
+                        \n Enter 9 to View Memory Usage. O(n) \
+                        \n Enter 10 to View Disk Usage. O(n) \
+                        \n Enter 11 to View Network Traffic Usage O(n) \
                         \n Enter 0 to Quit. \
                         \n\n Please type your selection and push enter: """))
 

@@ -1,6 +1,9 @@
 # The purpose of this algorithm is to calculate the total of the CPU Temperature column
 # Next the program will average the total and print the data.
 
+# Method is O(n), This is a linear complexity, 
+# meaning the time it takes to execute the method scales linearly with the size of the input dataset.
+
 
 class CPUTempAverages:
     def __init__(self, data):

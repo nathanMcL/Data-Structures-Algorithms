@@ -5,6 +5,9 @@
 # NetworkName,37/70,Weak
 # NetworkName,28/70,Poor
 
+# Method is O(n), This linear complexity, O(n),
+# means the execution time of the method scales linearly with the size of the input dataset.
+
 class WiFiCategorizer:
     def __init__(self, data):
         self.data = data

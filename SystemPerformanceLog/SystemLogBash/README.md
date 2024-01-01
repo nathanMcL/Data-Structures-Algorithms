@@ -18,7 +18,8 @@ Work in progress :)
 ---
 How to run our tests and what they mean:
 ---
-Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network). 
+Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network).
+
 
 
 ---
@@ -34,7 +35,7 @@ Challenges we ran into:
 Trying to get the code files to mesh with MenuMain.
 Trying to schedule the crontab -e file with command to execute the program at set times.
 Trying to execute the program using Pycharm and in a separate IDE VS Code environment to simulate the Gitpod VS code environment prior to upload. 
-Trying to debug the program in gitpod.  
+Trying to debug the program in gitpod. Trying to create a comprehendible readme file.  
  
 ---
 Accomplishments that we're proud of:
@@ -44,8 +45,10 @@ So far everything!
 ---
 What we learned:
 ---
-Running the program in Pycharm, and Running the program with VS Code, is not Gitpod! 
+Running the program in Pycharm, and Running the program with VS Code, is not Gitpod! Describing and articulating what this project is technically, is part of the process.  
 
 ---
 What's next for the project next quarter (as an app engineered for the web):
 ---
+
+Moving this project ahead for next quarter I am looking forward to improving the programs functions. I am excited to learn how I could better describe the data with visual depictions.

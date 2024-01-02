@@ -14,6 +14,7 @@ How to run our demo on our included data:
 
 ---
 Work in progress :)
+[![asciicast](https://asciinema.org/a/HrMKbH6qOB9BEQdnmsucGfUBO.svg)](https://asciinema.org/a/HrMKbH6qOB9BEQdnmsucGfUBO)
 
 ---
 How to run our tests and what they mean:

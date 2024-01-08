@@ -1,0 +1,9 @@
+OS Name,Date Time,CPU Temp,Wi-Fi -dBm,CPU Usage,Memory Usage,Disk Usage,Net Traffic Rx,Net Traffic Tx
+"Raspbian GNU/Linux 10 (buster)",2024-01-04 12:18:26,41.69,-58,8.55551,-40.4651,16%,18864798,574578
+"Raspbian GNU/Linux 10 (buster)",2024-01-04 19:16:25,40.08,-59,4.73368,-48.6047,16%,41219731,950244
+"Raspbian GNU/Linux 10 (buster)",2024-01-04 19:18:27,43.31,-60,4.90208,-49.5349,16%,41347179,956418
+
+"Raspbian GNU/Linux 10 (buster)",2024-01-05 06:43:31,39.00,-59,1.29571,-29.0698,16%,38204817,439134
+"Raspbian GNU/Linux 10 (buster)",2024-01-05 12:33:41,40.08,-60,71.6075,-25.814,16%,323046,32689
+"Raspbian GNU/Linux 10 (buster)",2024-01-05 18:15:04,39.00,-59,1.66216,-26.9767,16%,16459542,216744
+

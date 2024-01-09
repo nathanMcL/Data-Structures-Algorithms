@@ -5,7 +5,7 @@ System Performance Data Collection:
 ---
 Inspiration:
 ---
-Wanting to improve on my data collection programming, while utilizing a Raspberry Pi with Debian GNU/Linux 11 Operating System, I want to automate the collection of the data. Once the data is collected, ssh from my remote Windows computer to the Raspberry Pi, locate the csv of collected data and download/copy the data remotely.
+Wanting to improve on my data collection, and programming, while utilizing a Raspberry Pi with Debian GNU/Linux 11 Operating System, I want to automate the collection of the data. Once the data is collected, ssh from my remote Windows computer to the Raspberry Pi, locate the csv of collected data and download/copy the data remotely.
 
 ---
 How to run our demo on our included data:
@@ -20,7 +20,9 @@ Work in progress :)
 How to run our tests and what they mean:
 ---
 Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network).
-
+once the csv has been generated you will have a collection of data with headers:
+Operating System Name, Date and Time, CPU Temperature, Wi-Fi strength measured by 
+-bBm, Memory Usage, Disk Usage, Network Traffic Rx/Tx.
 
 
 ---
@@ -28,6 +30,7 @@ How we built it (your tech stack):
 ---
 Raspberry Pi with Debian GNU/Linux 11 Operating System.
 Pycharm & VS Code with Python 3.12.
+Windows Surface Pro
 
 
 ---

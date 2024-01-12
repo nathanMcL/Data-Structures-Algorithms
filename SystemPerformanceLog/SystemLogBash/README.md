@@ -22,7 +22,7 @@ How to run our tests and what they mean:
 Utilzing and implementing SystemLog.sh bash script found in the SystemLogResources folder to collect the data(you may need to change the bash script associated network).
 once the csv has been generated you will have a collection of data with headers:
 Operating System Name, Date and Time, CPU Temperature, Wi-Fi strength measured by 
--bBm, Memory Usage, Disk Usage, Network Traffic Rx/Tx.
+-dBm, Memory Usage, Disk Usage, Network Traffic Rx/Tx.
 
 
 ---
